@@ -1,0 +1,32 @@
+services:
+  pgvector:
+    image: pgvector/pgvector:pg16
+    container_name: pgvector
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgvector_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - caddy_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
+      interval: 60s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+
+volumes:
+  pgvector_data:
+    driver: local
+
+networks:
+  caddy_network:
+    external: true
