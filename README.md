@@ -12,6 +12,7 @@ pgvector is an open-source PostgreSQL extension that adds support for vector sim
 - Perform vector operations directly in SQL
 
 This makes it ideal for applications involving:
+
 - Machine learning
 - Natural language processing
 - Image similarity search
@@ -35,24 +36,28 @@ This makes it ideal for applications involving:
 ## Installation
 
 1. Clone this repository:
+
    ```bash
    git clone https://github.com/yourusername/pgvector-docker-service.git
    cd pgvector-docker-service
    ```
 
 2. Create a `.env` file based on the example:
+
    ```bash
    cp .env.example .env
    ```
 
 3. Edit the `.env` file to set your PostgreSQL credentials:
-   ```
+
+   ```env
    POSTGRES_USER=postgres
    POSTGRES_PASSWORD=your_secure_password
    POSTGRES_DB=postgres
    ```
 
 4. Start the service:
+
    ```bash
    docker-compose up -d
    ```
@@ -113,6 +118,7 @@ CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH (lists = 100)
 ## Resource Management
 
 The service is configured with the following resource limits:
+
 - CPU: 0.5 cores
 - Memory: 512MB
 
